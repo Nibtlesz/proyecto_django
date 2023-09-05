@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock  %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'website/style.css' %}">
+    <div ALIGN="CENTER">
+        <table BORDER="1">
+            <thead>
+                <tr>
+                    <th><img src="{% static 'website/html.png' %}"></th>
+                    <th><a href="{% url 'home' %}">Hacker News </a></th>
+                    <td><a href="{% url 'welcome' %}">new</a></td>
+                    <td>past </td>
+                    <td>comments </td>
+                    <td>ask </td>
+                    <td>show </td>
+                    <td>jobs </td>
+                    <td>submit </td>
+                    <td>login</td>
+                </tr>
+            </thead>
+            <tbody>
+                {%for new in news%}
+                    <tr>
+                        <td>
+                            <p>{{new.id}}</p>
+                        </td>
+                        <td COLSPAN="9">
+                            <p><a href="{{new.link}}">{{new.title}}</a>
+                                <p>{{new.author}} agregó la noticia hace {{new.publicationDate|date:"g"}} hrs.</p>
+                            </p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
